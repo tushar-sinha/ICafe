@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rshikkal.icafe.Activities.CartActivity"
+    android:background="@color/white">
+
+    <include
+        layout="@layout/toolbar_other_layout"
+        android:id="@+id/toolbar"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerview"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="@dimen/very_small_margin">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/emptycart"
+        android:id="@+id/emptycart"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/placeorderlayout"
+        android:layout_alignParentBottom="true"
+        android:background="@color/dark_grey">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total - Rs. 123"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/small_text"
+            android:layout_margin="@dimen/very_small_margin"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:id="@+id/totalprice"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Place Order"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/small_text"
+            android:layout_margin="@dimen/very_small_margin"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:id="@+id/placeorderbutton"
+            android:gravity="end"
+            />
+
+    </LinearLayout>
+</RelativeLayout>

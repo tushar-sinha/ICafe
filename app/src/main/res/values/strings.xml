@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ICafe</string>
+    <string name="login">Intel Login</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="font">font/DroidSans.ttf</string>
+</resources>

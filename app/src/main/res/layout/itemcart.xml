@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/very_small_margin"
+    android:background="@drawable/background"
+    android:elevation="5dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item Name"
+            android:textSize="@dimen/small_text"
+            android:textColor="@color/extra"
+            android:fontFamily="sans-serif-condensed"
+            android:id="@+id/cartitemname"
+            android:layout_margin="@dimen/very_small_margin"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="12"
+            android:textSize="@dimen/very_small_text"
+            android:textColor="@color/extra"
+            android:fontFamily="sans-serif-condensed"
+            android:id="@+id/cartitemprice"
+            android:layout_gravity="start"
+            android:drawableLeft="@drawable/rupeesnew"
+            android:drawablePadding="5dp"
+            android:layout_margin="@dimen/very_small_margin"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cartitemremove"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="0.7"
+        android:layout_gravity="center"
+        android:text="REMOVE"
+        android:textColor="@color/red"
+        android:background="@color/cream"
+        android:layout_marginRight="@dimen/very_small_margin"/>
+
+</LinearLayout>

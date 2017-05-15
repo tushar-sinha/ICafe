@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:elevation="10dp"
+    app:titleTextColor="@color/cream"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_hamburger"
+            android:id="@+id/hamburgericon"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textSize="@dimen/small_text"
+            android:textColor="@color/white"
+            android:id="@+id/navigationtitle"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/hamburgericon"
+            android:layout_marginLeft="@dimen/very_small_margin"
+            android:fontFamily="sans-serif-condensed"
+            />
+    </RelativeLayout>
+</android.support.v7.widget.Toolbar>

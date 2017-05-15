@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="5dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginBottom="@dimen/very_small_margin"
+    android:background="@drawable/background"
+    android:id="@+id/menulayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/itemlayout">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="0.7">
+
+          <ImageView
+              android:id="@+id/imageView"
+              android:layout_width="130dp"
+              android:layout_height="100dp"
+              android:src="@drawable/idli"
+              android:padding="@dimen/very_small_padding"
+              />
+
+      </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Item Name"
+                android:textSize="@dimen/small_text"
+                android:textColor="@color/colorPrimaryDark"
+                android:id="@+id/itemname"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Item Name Description h..."
+                android:textSize="12dp"
+                android:textColor="@color/extra"
+                android:id="@+id/itemdescription"/>
+            <View
+                android:layout_marginTop="@dimen/very_small_margin"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/colorPrimaryDark"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/very_small_margin">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="12"
+                    android:textSize="12dp"
+                    android:textColor="@color/extra"
+                    android:id="@+id/itemprice"
+                    android:layout_gravity="start"
+                    android:drawableLeft="@drawable/rupeesnew"
+                    android:drawablePadding="5dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="3.4"
+                    android:textSize="12dp"
+                    android:textColor="@color/extra"
+                    android:id="@+id/itemrating"
+                    android:gravity="start"
+                    android:drawableLeft="@drawable/star"
+                    android:drawablePadding="5dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="VEG"
+                    android:textSize="12dp"
+                    android:textColor="@color/green"
+                    android:gravity="center"
+                    android:id="@+id/itemtype"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/extra"
+        android:layout_below="@+id/itemlayout"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/itemlayout">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Available"
+        android:textSize="12dp"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/itemstatus"
+        android:padding="@dimen/very_small_padding"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD!"
+        android:textSize="12dp"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/itemadd"
+        android:layout_alignParentEnd="true"
+        android:padding="@dimen/very_small_padding"
+        android:layout_alignParentRight="true"
+        />
+    </RelativeLayout>
+</RelativeLayout>
