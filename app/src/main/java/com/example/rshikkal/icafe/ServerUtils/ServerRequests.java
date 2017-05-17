@@ -3,6 +3,7 @@ package com.example.rshikkal.icafe.ServerUtils;
 import android.content.Context;
 
 import com.example.rshikkal.icafe.Models.MenuItem;
+import com.example.rshikkal.icafe.Models.User;
 import com.example.rshikkal.icafe.Parsers.MenuParser;
 
 import org.json.JSONObject;
@@ -54,5 +55,21 @@ public class ServerRequests {
             }
 
             return kernalRates;
+    }
+
+    public JSONObject placeOrder(User user, String itemids, int price) {
+        JSONObject responseObject = new JSONObject();
+        try {
+            JSONObject request = new JSONObject();
+            request.put("useremail", user.getUseremail());
+            request.put("itemid", itemids);
+            request.put("price", price);
+            String response = clientWrapper.doPostRequest(Urls.BASEURL+Urls.MAKE_ORDER,request.toString());
+            responseObject = new JSONObject(response);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return responseObject;
     }
 }

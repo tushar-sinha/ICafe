@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "627203114709",
+    "firebase_url": "https://icafe-18bf7.firebaseio.com",
+    "project_id": "icafe-18bf7",
+    "storage_bucket": "icafe-18bf7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627203114709:android:0a80f132b7d96d77",
+        "android_client_info": {
+          "package_name": "com.example.rshikkal.icafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627203114709-h00avq5ldfqaugki5gf0pseibe638msm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoVs3iwRS7k-1XuxP4fkZXyYKJHPTVEng"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
