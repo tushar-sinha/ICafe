@@ -10,4 +10,5 @@ public class Urls {
     public static final String USER_LOGIN = "userlogin.php";
     public static final String MENU_ITEM = "getitems.php";
     public static final String MAKE_ORDER = "makeorder.php";
+    public static final String LOAD_MYORDERS = "loadmyorders.php";
 }
