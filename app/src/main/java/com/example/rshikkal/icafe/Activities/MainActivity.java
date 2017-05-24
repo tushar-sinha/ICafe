@@ -122,8 +122,8 @@ public class MainActivity extends BaseActivity {
         //add the images here
         HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
         file_maps.put("1",R.drawable.first);
-        file_maps.put("2",R.drawable.first);
-        file_maps.put("3", R.drawable.first);
+        file_maps.put("2",R.drawable.second);
+        file_maps.put("3", R.drawable.third);
 
 
         for(String name : file_maps.keySet()){

@@ -34,8 +34,9 @@ import java.util.List;
 
 public class OrdersActivity extends AppCompatActivity {
 
-    private List<MenuItem> menuItemList = new ArrayList<>();
+    private static List<MenuItem> menuItemList = new ArrayList<>();
     private RecyclerView recyclerView;
+    JSONObject object = new JSONObject();
     MyOrdersAdapter myOrdersAdapter;
 
     Toolbar toolbar;
@@ -62,7 +63,7 @@ public class OrdersActivity extends AppCompatActivity {
                 LoginPreferences preferences = new LoginPreferences(OrdersActivity.this);
                 User user = preferences.getUser();
                 try {
-                    JSONObject object = new JSONObject();
+
                     object.put("user", user.getUseremail());
                     object.put("itemid" , product.getItemid());
                     object.put("price", product.getItemprice());
@@ -72,6 +73,10 @@ public class OrdersActivity extends AppCompatActivity {
                 catch (Exception e){
                     e.printStackTrace();
                 }
+                Intent intent = new Intent(OrdersActivity.this,
+                        QRActivity.class);
+                intent.putExtra("json", object.toString());
+                startActivity(intent);
             }
 
             @Override
@@ -84,7 +89,7 @@ public class OrdersActivity extends AppCompatActivity {
     }
 
     private void loadMyOrders() {
-        new AsyncTask<Object, Object, List<com.example.rshikkal.icafe.Models.MenuItem>>(){
+        new AsyncTask<Object, Object, List<MenuItem>>(){
 
             DialogUtils progress =  new DialogUtils(OrdersActivity.this, DialogUtils.Type.PROGRESS_DIALOG);
             @Override
@@ -94,15 +99,16 @@ public class OrdersActivity extends AppCompatActivity {
             }
 
             @Override
-            protected List<com.example.rshikkal.icafe.Models.MenuItem> doInBackground(Object... params) {
+            protected List<MenuItem> doInBackground(Object... params) {
                 return new ServerRequests().loadMyOrders(OrdersActivity.this);
             }
 
             @Override
-            protected void onPostExecute(List<com.example.rshikkal.icafe.Models.MenuItem> response) {
+            protected void onPostExecute(List<MenuItem> response) {
                 super.onPostExecute(response);
                 progress.dismissProgressDialog();
                 Log.e("list",response.toString());
+                menuItemList = response;
                 myOrdersAdapter = new MyOrdersAdapter(response,OrdersActivity.this);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(OrdersActivity.this.getApplicationContext(),LinearLayoutManager.VERTICAL,false);
                 recyclerView.setLayoutManager(mLayoutManager);
