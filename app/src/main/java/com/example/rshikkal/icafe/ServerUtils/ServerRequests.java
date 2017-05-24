@@ -3,7 +3,9 @@ package com.example.rshikkal.icafe.ServerUtils;
 import android.content.Context;
 
 import com.example.rshikkal.icafe.Models.MenuItem;
+import com.example.rshikkal.icafe.Models.User;
 import com.example.rshikkal.icafe.Parsers.MenuParser;
+import com.example.rshikkal.icafe.Preferences.LoginPreferences;
 
 import org.json.JSONObject;
 
@@ -54,5 +56,43 @@ public class ServerRequests {
             }
 
             return kernalRates;
+    }
+
+    public JSONObject placeOrder(User user, String itemids, int price) {
+        JSONObject responseObject = new JSONObject();
+        try {
+            JSONObject request = new JSONObject();
+            request.put("useremail", user.getUseremail());
+            request.put("itemid", itemids);
+            request.put("price", price);
+            String response = clientWrapper.doPostRequest(Urls.BASEURL+Urls.MAKE_ORDER,request.toString());
+            responseObject = new JSONObject(response);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return responseObject;
+    }
+
+    public List<MenuItem> loadMyOrders(Context context) {
+        List<MenuItem> kernalRates  = new ArrayList<>();
+        JSONObject responseObject = null;
+        LoginPreferences loginPreferences = new LoginPreferences(context);
+        User user  = loginPreferences.getUser();
+        try {
+            JSONObject request = new JSONObject();
+            request.put("email", user.getUseremail());
+            String response = clientWrapper.doPostRequest(Urls.BASEURL + Urls.LOAD_MYORDERS,request.toString());
+            responseObject = new JSONObject(response);
+            if (responseObject != null) {
+                if (responseObject.getString("status").equals("success")) {
+                    kernalRates = new MenuParser().parse(responseObject.getJSONArray("items"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return kernalRates;
     }
 }

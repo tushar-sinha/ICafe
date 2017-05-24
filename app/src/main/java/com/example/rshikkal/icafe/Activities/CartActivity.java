@@ -2,6 +2,7 @@ package com.example.rshikkal.icafe.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -23,8 +24,9 @@ import com.example.rshikkal.icafe.Models.MenuItem;
 import com.example.rshikkal.icafe.Models.User;
 import com.example.rshikkal.icafe.Preferences.LoginPreferences;
 import com.example.rshikkal.icafe.R;
+import com.example.rshikkal.icafe.ServerUtils.ServerRequests;
+import com.example.rshikkal.icafe.Utils.DialogUtils;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -98,17 +100,65 @@ public class CartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     User user = loginPreferences.getUser();
-                    JSONArray itemsToOrder = new JSONArray();
-                    for (MenuItem item : menuItemList) {
-                        JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("userid", user.getUseremail());
+                    String itemids = "";
+                    int price = 0;
+                    itemids = menuItemList.get(0).getItemid();
+                    price = Integer.parseInt(menuItemList.get(0).getItemprice());
+                    for(int i = 1; i < menuItemList.size(); i++){
+                        MenuItem newitem = menuItemList.get(i);
+                        itemids = itemids + (";" + newitem.getItemid());
+                        price = price + Integer.parseInt(newitem.getItemprice());
                     }
+
+                    placeOrder(user, itemids, price);
                 }
                 catch (Exception e){
                     e.printStackTrace();
                 }
             }
         });
+    }
+
+    private void placeOrder(final User user, final String itemids, final int price) {
+        new AsyncTask<Object, Object, JSONObject>(){
+
+            DialogUtils progress = new DialogUtils(CartActivity.this, DialogUtils.Type.PROGRESS_DIALOG);
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progress.showProgressDialog("Placing Order.", "please wait...", false);
+            }
+
+            @Override
+            protected JSONObject doInBackground(Object... params) {
+                return new ServerRequests().placeOrder(user, itemids,price);
+            }
+
+            @Override
+            protected void onPostExecute(JSONObject response) {
+                super.onPostExecute(response);
+                progress.dismissProgressDialog();
+                try {
+                    if (response != null) {
+                        if (response.getString("status").equals("success")) {
+                            Toast.makeText(CartActivity.this, "Order placed", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(CartActivity.this, OrderSuccessActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else{
+                            Toast.makeText(CartActivity.this, "Failed", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(CartActivity.this, "Something went wrong!!", Toast.LENGTH_LONG).show();
+                    }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+        }.execute();
     }
 
     public interface ClickListener {
